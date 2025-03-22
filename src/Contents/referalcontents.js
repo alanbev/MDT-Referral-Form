@@ -16,8 +16,7 @@ const referalContents=[
     controlType:"date",
     options:[""]   
     },
-
-        
+   
     {
     label:"WHO Performance status",
     controlType:"dropdown",
@@ -27,14 +26,15 @@ const referalContents=[
     {
     label:"MDT to refer to",
     controlType:"dropdown",
-    options:["Anal", "Colorectal","CUP" , "ERC", "Gynaecology", "Haematology", "Lung", "Neuro", "Sarcoma","Skin", "Upper GI", "Urology"],
+    options:["Colorectal","Anal","ERC"]
+    // , "CUP", "Gynaecology", "Haematology", "Lung", "Neuro", "Sarcoma","Skin", "Upper GI", "Urology"],
     },   
     
     
     {
     label:"MDT Consultant",
     controlType:"dropdown",
-    options:["Unspecifed","Barrow","Beveridge", "Bhowmick", "Hany", "Jadav", "Khan", "Mitchell", "Parkin", "Peristerakis"]   
+    options:["Unspecifed","Barrow","Beveridge", "Bhowmick", "Davies","Hany", "Jadav", "Kearsey", "Mitchell", "Parkin", "Peristerakis", "Beaumont", "Lau", "Williamson", "Zekri"]   
     },
 
     {
@@ -55,7 +55,7 @@ const referalContents=[
     },
 
     {
-    label:"Urgent addition (e.g. inpatient)",
+    label:"Urgent addition (inpatient or treatment planned in next 10 days)",
     controlType:"radio button",
     options:["Yes", "No"] ,
     default: "No"  
@@ -75,12 +75,21 @@ const referalContents=[
     default: "Yes"  
     },
 
-    {
+ 
+
+ {
     label:"Trust referring",
     controlType:"dropdown",
-    options:["Blackpool", "East Lancs", "Morcambe Bay"],
+    options:["Blackpool", "East Lancs", "Morecambe Bay", "Fulwood Hall", "Euxton Hall", "Buckshaw", "Other"],
     Conditional:["LTH_patient", "No"] 
     },
+
+  {
+    label:"Other referring trust",
+    controlType:"text",
+    Conditional:["LTH_patient", "No"] 
+    },
+
 
 
     {
@@ -91,12 +100,7 @@ const referalContents=[
     },
 
 
-    {
-    label:"MDT to refer to",
-    controlType:"dropdown",
-    options:["Anal", "Colorectal","CUP" , "ERC", "Gynaecology", "Haematology", "Lung", "Neuro", "Sarcoma","Skin", "Upper GI", "Urology"],
-    }, 
-
+  
     
     {
     label:"Previously discussed at this MDT",
@@ -115,9 +119,16 @@ const referalContents=[
   {
     label:"Which other MDT has discussed this episode",
     controlType:"dropdown",
-    options:["Anal", "Colorectal","CUP" , "ERC", "Gynaecology", "Haematology", "Lung", "Neuro", "Sarcoma","Skin", "Upper GI", "Urology"],
+    options:["Anal", "Colorectal","ERC","CUP" , "Gynaecology", "Haematology", "Lung", "Neuro", "Sarcoma","Skin", "Upper GI", "Urology"],
     Conditional:["Has_this_episode_been_discussed_at_another_MDT", "Yes" ] 
     }, 
+
+    {
+    label:"Confirmed cancer diagnosis?", 
+    controlType:"radio button",
+    options:["Yes", "No"] ,
+    default: "No"  
+    },
 
     {
     label:"Brief Clinical History",
@@ -129,7 +140,24 @@ const referalContents=[
     {
     label:"Investigations to discuss",
     controlType:"checkbox group",
-    options:["Histology", "CT", "MR", "Other radiology", "Endoscopic Ix"],
+    options:["Histology", "CT", "MR", "PET", "Nuclear Medicine", "Ultrasound","Other radiology- detail in question for MDT box", "Endoscopic Ix"],
+    },
+        
+
+
+    {
+      label:"Were all of these investigations performed at LTH", 
+      controlType:"radio button",
+      options:["Yes", "No"] ,
+      default: "Yes"  
+      },
+
+    
+  {
+    label:"Please list external investigations with date and hospital",
+    controlType:"textarea",
+    options:[],
+    Conditional:["Were_all_of_these_investigations_performed_at_LTH", "No" ] 
     },
 
     {
@@ -147,7 +175,7 @@ const referalContents=[
     },
 
     {
-    label:"Post Radiotherapy discussion",
+    label:"Post neoadjuvant therapy discussion",
     controlType:"radio button",
     options:["Yes", "No"] ,
     default: "No"  

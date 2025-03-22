@@ -1,6 +1,6 @@
 import React, {  useRef, useContext, useState ,useEffect} from 'react';
 import {  Button, Box, Grid } from '@mui/material';
-import { Formik, Form, Field, ErrorMessage, validateYupSchema } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup'
 import symptomHandler from '../../utilities/symptomHandler.js';
 import RadioButton from './radiobutton';
@@ -41,7 +41,7 @@ delay()
 
  let formQuestions=ReferralContents.map((symptom, index)=>
     { symptom["show"]=true
-      //label: 'When present', controlType: 'radio button', options: Array(2)}
+     
       symptom["name"]=symptom.label.replaceAll(" ","_")
     
       if (symptom.hasOwnProperty("Conditional"))
@@ -81,7 +81,7 @@ delay()
         symptom["optionObject"]=symptomHandler.ListOptions(symptom.options, "checkbox")
         return (<Grid item  xs={12} sm={gridSize} key={index}> <CheckboxGroup symptom={symptom}  key={0} /> </Grid>)
 
-      case "date": // still has problems with size of box on form and date format in story!
+      case "date": 
       return (<Grid item xs={12} sm={6} key={index}> <InputField type={"date"} symptom ={symptom}  key={0} /> </Grid>)
 
       default:{return(<></>)}
